@@ -11,10 +11,13 @@ import PaginationControls from "./components/PaginationControls";
 import ResultsCount from "./components/ResultCount";
 
 import Sidebar, { SidebarTop } from "./components/Sidebar";
-// import SearchForm from "./components/SearchForm";
+import SearchForm from "./components/SearchForm";
 import SortingControls from "./components/SortingControls";
+import { useSearchTextContext } from "./lib/hooks";
 
 function App() {
+  const { searchText, handleChangeSearchText } = useSearchTextContext();
+
   return (
     <>
       <Background />
@@ -25,7 +28,10 @@ function App() {
           <BookmarksButton />
         </HeaderTop>
 
-        {/* <SearchForm /> */}
+        <SearchForm
+          searchText={searchText}
+          setSearchText={handleChangeSearchText}
+        />
       </Header>
 
       <Container>

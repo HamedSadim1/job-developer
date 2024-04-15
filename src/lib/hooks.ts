@@ -47,7 +47,6 @@ export function useJobItem(id: number | null) {
   } as const;
 }
 
-
 export function useJobItems(ids: number[]) {
   const results = useQueries({
     queries: ids.map((id) => ({
@@ -64,8 +63,8 @@ export function useJobItems(ids: number[]) {
   const jobItems = results
     .map((result) => result.data?.jobItem)
     // .filter((jobItem) => jobItem !== undefined);
-    // .filter((jobItem) => !!jobItem);
-    .filter((jobItem) => Boolean(jobItem)) as JobItemExpanded[];
+    .filter((jobItem) => !!jobItem);
+  // .filter((jobItem) => Boolean(jobItem)) as JobItemExpanded[];
   const isLoading = results.some((result) => result.isLoading);
 
   return {
@@ -83,7 +82,7 @@ type JobItemsApiResponse = {
 };
 
 const fetchJobItems = async (
-  searchText: string
+  searchText: string | null
 ): Promise<JobItemsApiResponse> => {
   const response = await fetch(`${BASE_API_URL}?search=${searchText}`);
   // 4xx or 5xx
@@ -163,24 +162,24 @@ export function useLocalStorage<T>(
   return [value, setValue] as const;
 }
 
-export function useOnClickOutside(
-  refs: React.RefObject<HTMLElement>[],
-  handler: () => void
-) {
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      if (refs.every((ref) => !ref.current?.contains(e.target as Node))) {
-        handler();
-      }
-    };
+// export function useOnClickOutside(
+//   refs: React.RefObject<HTMLElement>[],
+//   handler: () => void
+// ) {
+//   useEffect(() => {
+//     const handleClick = (e: MouseEvent) => {
+//       if (refs.every((ref) => !ref.current?.contains(e.target as Node))) {
+//         handler();
+//       }
+//     };
 
-    document.addEventListener("click", handleClick);
+//     document.addEventListener("click", handleClick);
 
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, [refs, handler]);
-}
+//     return () => {
+//       document.removeEventListener("click", handleClick);
+//     };
+//   }, [refs, handler]);
+// }
 
 // --------------------------------------------------
 

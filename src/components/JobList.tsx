@@ -1,3 +1,4 @@
+import { jobListings } from "../lib/constants";
 import { useActiveIdContext } from "../lib/hooks";
 import { JobItem } from "../lib/types";
 import JobListItem from "./JobListItem";
