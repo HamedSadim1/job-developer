@@ -1,22 +1,51 @@
-import { useState } from "react";
+import { Toaster } from "react-hot-toast";
+import Background from "./components/Background";
+import BookmarksButton from "./components/BookmarksButton";
+import { Container } from "./components/Container";
+import Footer from "./components/Footer";
+import { Header, HeaderTop } from "./components/Header";
+import JobItemContent from "./components/JobItemContent";
+import JobListSearch from "./components/JobListSearch";
+import Logo from "./components/Logo";
+import PaginationControls from "./components/PaginationControls";
+import ResultsCount from "./components/ResultCount";
+
+import Sidebar, { SidebarTop } from "./components/Sidebar";
+// import SearchForm from "./components/SearchForm";
+import SortingControls from "./components/SortingControls";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Background />
+
+      <Header>
+        <HeaderTop>
+          <Logo />
+          <BookmarksButton />
+        </HeaderTop>
+
+        {/* <SearchForm /> */}
+      </Header>
+
+      <Container>
+        <Sidebar>
+          <SidebarTop>
+            <ResultsCount />
+            <SortingControls />
+          </SidebarTop>
+
+          <JobListSearch />
+
+          <PaginationControls />
+        </Sidebar>
+
+        <JobItemContent />
+      </Container>
+
+      <Footer />
+
+      <Toaster position="top-right" />
     </>
   );
 }
