@@ -4,8 +4,8 @@ const Footer = () => {
       <small>
         <p>
           © Copyright by
-          <a href="https://bytegrad.com" target="_blank">
-            ByteGrad.com
+          <a href="https://github.com/HamedSadim1" target="_blank">
+            Hamed Sadim
           </a>
           . Intended for learning or your portfolio.
         </p>
