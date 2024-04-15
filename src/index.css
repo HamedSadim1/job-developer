@@ -1023,9 +1023,6 @@ body::-webkit-scrollbar {
   border-left: 5px solid #ccd1d3;
 }
 
-.spinner--search {
-}
-
 .spinner--job-details {
   left: 50%;
   top: 40%;
