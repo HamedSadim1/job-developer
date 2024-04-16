@@ -398,9 +398,6 @@ body::-webkit-scrollbar {
   background-color: #d96a46;
 } */
 
-.job-item__middle {
-}
-
 .job-item__company {
   font-size: 13px;
   /* margin-bottom: 2px; */
@@ -725,9 +722,6 @@ body::-webkit-scrollbar {
   object-fit: cover;
   border-top-right-radius: 8px;
   user-select: none;
-}
-
-.job-details__other {
 }
 
 .job-details__footer {
