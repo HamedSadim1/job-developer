@@ -9,6 +9,11 @@ type SearchTextContext = {
 
 export const SearchTextContext = createContext<SearchTextContext | null>(null);
 
+/**
+ * Provides a context for managing search text.
+ * @param children - The child components to render.
+ * @returns The search text context provider component.
+ */
 export default function SearchTextContextProvider({
   children,
 }: {
@@ -17,6 +22,10 @@ export default function SearchTextContextProvider({
   const [searchText, setSearchText] = useState("");
   const debouncedSearchText = useDebounce(searchText, 250);
 
+  /**
+   * Handles the change in search text.
+   * @param newSearchText - The new search text value.
+   */
   const handleChangeSearchText = (newSearchText: string) => {
     setSearchText(newSearchText);
   };

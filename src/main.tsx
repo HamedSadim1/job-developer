@@ -8,6 +8,12 @@ import ActiveIdContextProvider from "./context/ActiveIdContextProvider";
 import SearchTextContextProvider from "./context/SearchTextContextProvider";
 import JobItemsContextProvider from "./context/JobItemsContextProvider";
 
+/**
+ * Creates a new instance of QueryClient with default options.
+ * @remarks
+ * The default options include settings for queries such as stale time, refetch on window focus, and retry behavior.
+ * @returns A new instance of QueryClient.
+ */
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

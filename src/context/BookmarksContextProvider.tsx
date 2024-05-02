@@ -11,6 +11,11 @@ type BookmarksContext = {
 
 export const BookmarksContext = createContext<BookmarksContext | null>(null);
 
+/**
+ * Provides a context for managing bookmarks.
+ *
+ * @param children - The child components to render.
+ */
 export default function BookmarksContextProvider({
   children,
 }: {
@@ -28,6 +33,11 @@ export default function BookmarksContextProvider({
     (item): item is JobItemExpanded => item !== undefined
   );
 
+  /**
+   * Toggles the bookmark status of a job item.
+   *
+   * @param id - The ID of the job item.
+   */
   const handleToggleBookmark = (id: number) => {
     if (bookmarkedIds.includes(id)) {
       setBookmarkedIds((prev) => prev.filter((item) => item !== id));

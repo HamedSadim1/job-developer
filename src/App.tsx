@@ -15,6 +15,10 @@ import SearchForm from "./components/SearchForm";
 import SortingControls from "./components/SortingControls";
 import { useSearchTextContext } from "./lib/hooks";
 
+/**
+ * The main component of the application.
+ * Renders the entire application layout including the header, sidebar, job list, and footer.
+ */
 function App() {
   const { searchText, handleChangeSearchText } = useSearchTextContext();
 

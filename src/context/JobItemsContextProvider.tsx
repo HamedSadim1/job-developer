@@ -17,6 +17,12 @@ type JobItemsContext = {
 
 export const JobItemsContext = createContext<JobItemsContext | null>(null);
 
+/**
+ * Provides a context for managing job items, including sorting, pagination, and search functionality.
+ *
+ * @param children - The child components to be wrapped by the context provider.
+ * @returns The context provider component.
+ */
 export default function JobItemsContextProvider({
   children,
 }: {
@@ -66,6 +72,9 @@ export default function JobItemsContextProvider({
     setSortBy(newSortBy);
   }, []);
 
+  /**
+   * The value of the job items context.
+   */
   const contextValue = useMemo(
     () => ({
       jobItems,

@@ -13,6 +13,12 @@ type JobItemApiResponse = {
   jobItem: JobItemExpanded;
 };
 
+/**
+ * Fetches a job item from the API based on the provided ID.
+ * @param id - The ID of the job item to fetch.
+ * @returns A promise that resolves to the fetched job item.
+ * @throws An error if the API response is not successful.
+ */
 const fetchJobItem = async (id: number): Promise<JobItemApiResponse> => {
   const response = await fetch(`${BASE_API_URL}/${id}`);
 
@@ -28,6 +34,11 @@ const fetchJobItem = async (id: number): Promise<JobItemApiResponse> => {
   return data;
 };
 
+/**
+ * Custom hook to fetch a job item by its ID.
+ * @param id - The ID of the job item to fetch.
+ * @returns An object containing the job item data and loading state.
+ */
 export function useJobItem(id: number | null) {
   const { data, isInitialLoading } = useQuery(
     ["job-item", id],
@@ -47,6 +58,12 @@ export function useJobItem(id: number | null) {
   } as const;
 }
 
+/**
+ * Custom hook to fetch job items based on the provided IDs.
+ *
+ * @param ids - An array of job item IDs.
+ * @returns An object containing the fetched job items and a loading state.
+ */
 export function useJobItems(ids: number[]) {
   const results = useQueries({
     queries: ids.map((id) => ({
@@ -81,6 +98,13 @@ type JobItemsApiResponse = {
   jobItems: JobItem[];
 };
 
+/**
+ * Fetches job items from the API based on the provided search text.
+ *
+ * @param searchText - The search text to filter the job items.
+ * @returns A promise that resolves to the job items API response.
+ * @throws An error if the API response is not successful.
+ */
 const fetchJobItems = async (
   searchText: string | null
 ): Promise<JobItemsApiResponse> => {
@@ -94,6 +118,11 @@ const fetchJobItems = async (
   return data;
 };
 
+/**
+ * Custom hook for performing a search query.
+ * @param searchText - The text to search for.
+ * @returns An object containing the job items and loading state.
+ */
 export function useSearchQuery(searchText: string) {
   const { data, isInitialLoading } = useQuery(
     ["job-items", searchText],
@@ -115,6 +144,13 @@ export function useSearchQuery(searchText: string) {
 
 // --------------------------------------------------
 
+/**
+ * Debounces a value by delaying its update until a certain amount of time has passed without any changes.
+ * @template T - The type of the value being debounced.
+ * @param {T} value - The value to be debounced.
+ * @param {number} [delay=500] - The delay in milliseconds before updating the debounced value.
+ * @returns {T} - The debounced value.
+ */
 export function useDebounce<T>(value: T, delay = 500): T {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -127,6 +163,10 @@ export function useDebounce<T>(value: T, delay = 500): T {
   return debouncedValue;
 }
 
+/**
+ * Custom hook that returns the active ID based on the current URL hash.
+ * @returns The active ID as a number or null if no active ID is found.
+ */
 export function useActiveId() {
   const [activeId, setActiveId] = useState<number | null>(null);
 
@@ -147,6 +187,15 @@ export function useActiveId() {
   return activeId;
 }
 
+/**
+ * Custom hook that provides a state value stored in the local storage.
+ * The state value is persisted in the local storage and updated whenever it changes.
+ *
+ * @template T - The type of the state value.
+ * @param {string} key - The key used to store the state value in the local storage.
+ * @param {T} initialValue - The initial value of the state.
+ * @returns {[T, React.Dispatch<React.SetStateAction<T>>]} - A tuple containing the state value and a function to update it.
+ */
 export function useLocalStorage<T>(
   key: string,
   initialValue: T
@@ -183,6 +232,11 @@ export function useLocalStorage<T>(
 
 // --------------------------------------------------
 
+/**
+ * Custom hook to access the BookmarksContext.
+ * @returns The BookmarksContext object.
+ * @throws {Error} If used outside of a BookmarksContextProvider.
+ */
 export function useBookmarksContext() {
   const context = useContext(BookmarksContext);
   if (!context) {
@@ -193,6 +247,12 @@ export function useBookmarksContext() {
   return context;
 }
 
+/**
+ * Custom hook that returns the value of the ActiveIdContext.
+ * Throws an error if used outside of an ActiveIdContextProvider.
+ * @returns The value of the ActiveIdContext.
+ * @throws Error if used outside of an ActiveIdContextProvider.
+ */
 export function useActiveIdContext() {
   const context = useContext(ActiveIdContext);
   if (!context) {
@@ -203,6 +263,11 @@ export function useActiveIdContext() {
   return context;
 }
 
+/**
+ * Custom hook that provides access to the search text context.
+ * @returns The search text context.
+ * @throws {Error} If used outside of a SearchTextContextProvider.
+ */
 export function useSearchTextContext() {
   const context = useContext(SearchTextContext);
   if (!context) {
@@ -213,6 +278,11 @@ export function useSearchTextContext() {
   return context;
 }
 
+/**
+ * Custom hook that provides access to the JobItemsContext.
+ * @returns The JobItemsContext object.
+ * @throws {Error} If used outside of a JobItemsContextProvider.
+ */
 export function useJobItemsContext() {
   const context = useContext(JobItemsContext);
   if (!context) {

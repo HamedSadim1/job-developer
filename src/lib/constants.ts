@@ -1,3 +1,6 @@
+/**
+ * The base API URL for making requests to the remote server.
+ */
 export const BASE_API_URL =
   "https://bytegrad.com/course-assets/projects/rmtdev/api/data";
 
