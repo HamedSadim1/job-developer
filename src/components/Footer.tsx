@@ -1,3 +1,7 @@
+/**
+ * Footer component that displays the footer section of the website.
+ * @returns The rendered footer component.
+ */
 const Footer = () => {
   return (
     <footer className="footer">

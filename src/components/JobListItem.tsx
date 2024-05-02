@@ -6,6 +6,13 @@ type JobListItemProps = {
   isActive: boolean;
 };
 
+/**
+ * Renders a single job item in the job list.
+ *
+ * @param {Object} jobItem - The job item object containing the job details.
+ * @param {boolean} isActive - Indicates whether the job item is active or not.
+ * @returns {JSX.Element} The rendered job item component.
+ */
 export default function JobListItem({ jobItem, isActive }: JobListItemProps) {
   return (
     <li className={`job-item ${isActive ? "job-item--active" : ""}`}>

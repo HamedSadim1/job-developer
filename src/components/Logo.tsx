@@ -1,3 +1,7 @@
+/**
+ * Renders the logo component.
+ * @returns The logo component.
+ */
 export default function Logo() {
   return (
     <a href="." className="logo">

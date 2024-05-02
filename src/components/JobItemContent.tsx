@@ -2,6 +2,10 @@ import { useActiveIdContext, useJobItem } from "../lib/hooks";
 import BookmarkIcon from "./BookmarkIcon";
 import Spinner from "./Spinner";
 
+/**
+ * Renders the content of a job item.
+ * @returns JSX.Element
+ */
 export default function JobItemContent() {
   const { activeId } = useActiveIdContext();
   const { jobItem, isLoading } = useJobItem(activeId);
@@ -101,6 +105,11 @@ export default function JobItemContent() {
   );
 }
 
+/**
+ * Renders the loading content for a job item.
+ *
+ * @returns The loading job content.
+ */
 function LoadingJobContent() {
   return (
     <section className="job-details">
@@ -111,6 +120,10 @@ function LoadingJobContent() {
   );
 }
 
+/**
+ * Renders the content for an empty job.
+ * @returns JSX.Element representing the empty job content.
+ */
 function EmptyJobContent() {
   return (
     <section className="job-details">

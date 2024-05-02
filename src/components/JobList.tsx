@@ -8,6 +8,14 @@ type JobListProps = {
   isLoading: boolean;
 };
 
+/**
+ * Renders a list of job items.
+ *
+ * @param {Object} props - The component props.
+ * @param {Array} props.jobItems - The array of job items to render.
+ * @param {boolean} props.isLoading - A flag indicating whether the job items are currently being loaded.
+ * @returns {JSX.Element} The rendered job list component.
+ */
 export function JobList({ jobItems, isLoading }: JobListProps) {
   const { activeId } = useActiveIdContext();
 

@@ -1,3 +1,10 @@
+/**
+ * Renders a search form component.
+ *
+ * @param searchText - The current search text.
+ * @param setSearchText - A function to update the search text.
+ * @returns The search form component.
+ */
 export default function SearchForm({
   searchText,
   setSearchText,

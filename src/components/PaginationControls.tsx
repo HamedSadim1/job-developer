@@ -2,6 +2,10 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { PageDirection } from "../lib/types";
 import { useJobItemsContext } from "../lib/hooks";
 
+/**
+ * Renders pagination controls for navigating between pages.
+ * @returns The PaginationControls component.
+ */
 export default function PaginationControls() {
   const {
     currentPage,
@@ -35,6 +39,15 @@ type PaginationButtonProps = {
   onClick: () => void;
 };
 
+/**
+ * Renders a pagination button component.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.direction - The direction of the pagination button ("previous" or "next").
+ * @param {number} props.currentPage - The current page number.
+ * @param {Function} props.onClick - The click event handler for the button.
+ * @returns {JSX.Element} The rendered pagination button component.
+ */
 function PaginationButton({
   direction,
   currentPage,

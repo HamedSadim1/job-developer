@@ -5,6 +5,13 @@ type BookmarkIconProps = {
   id: number;
 };
 
+/**
+ * Renders a bookmark icon button.
+ *
+ * @param {BookmarkIconProps} props - The props for the BookmarkIcon component.
+ * @param {string} props.id - The ID of the bookmark.
+ * @returns {JSX.Element} The rendered BookmarkIcon component.
+ */
 export default function BookmarkIcon({ id }: BookmarkIconProps) {
   const { bookmarkedIds, handleToggleBookmark } = useBookmarksContext();
 

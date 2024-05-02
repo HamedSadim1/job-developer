@@ -1,5 +1,9 @@
 import { useJobItemsContext } from "../lib/hooks";
 
+/**
+ * Renders the sorting controls component.
+ * @returns The JSX element representing the sorting controls.
+ */
 export default function SortingControls() {
   const { sortBy, handleChangeSortBy } = useJobItemsContext();
 
@@ -29,6 +33,15 @@ type SortingButtonProps = {
   isActive: boolean;
 };
 
+/**
+ * Renders a sorting button component.
+ *
+ * @param {Object} props - The component props.
+ * @param {ReactNode} props.children - The content of the button.
+ * @param {Function} props.onClick - The click event handler for the button.
+ * @param {boolean} props.isActive - Indicates whether the button is active or not.
+ * @returns {JSX.Element} The rendered sorting button component.
+ */
 function SortingButton({ children, onClick, isActive }: SortingButtonProps) {
   return (
     <button
