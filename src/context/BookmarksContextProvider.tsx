@@ -23,6 +23,11 @@ export default function BookmarksContextProvider({
   const { jobItems: bookmarkedJobItems, isLoading } =
     useJobItems(bookmarkedIds);
 
+  // Filter out undefined values from bookmarkedJobItems
+  const filteredBookmarkedJobItems = bookmarkedJobItems.filter(
+    (item): item is JobItemExpanded => item !== undefined
+  );
+
   const handleToggleBookmark = (id: number) => {
     if (bookmarkedIds.includes(id)) {
       setBookmarkedIds((prev) => prev.filter((item) => item !== id));
@@ -36,7 +41,7 @@ export default function BookmarksContextProvider({
       value={{
         bookmarkedIds,
         handleToggleBookmark,
-        bookmarkedJobItems,
+        bookmarkedJobItems: filteredBookmarkedJobItems,
         isLoading,
       }}
     >
