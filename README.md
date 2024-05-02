@@ -1,6 +1,6 @@
 # rmt Dev
 
-![screenshot](/rmt-Dev-screenshot")
+![screenshot]("/public/rmt-Dev-screenshot.png")
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
