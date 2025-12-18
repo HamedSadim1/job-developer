@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { JobItem, JobItemExpanded } from "./types";
 import { BASE_API_URL } from "./constants";
 import { useQueries, useQuery } from "@tanstack/react-query";
-import { handleError } from "./utils";
 import { BookmarksContext } from "../context/BookmarksContextProvider";
 import { ActiveIdContext } from "../context/ActiveIdContextProvider";
 import { SearchTextContext } from "../context/SearchTextContextProvider";
@@ -40,21 +39,18 @@ const fetchJobItem = async (id: number): Promise<JobItemApiResponse> => {
  * @returns An object containing the job item data and loading state.
  */
 export function useJobItem(id: number | null) {
-  const { data, isInitialLoading } = useQuery(
-    ["job-item", id],
-    () => (id ? fetchJobItem(id) : null),
-    {
-      staleTime: 1000 * 60 * 60,
-      refetchOnWindowFocus: false,
-      retry: false,
-      enabled: Boolean(id),
-      onError: handleError,
-    }
-  );
+  const { data, isLoading } = useQuery({
+    queryKey: ["job-item", id],
+    queryFn: () => (id ? fetchJobItem(id) : null),
+    staleTime: 1000 * 60 * 60,
+    refetchOnWindowFocus: false,
+    retry: false,
+    enabled: Boolean(id),
+  });
 
   return {
     jobItem: data?.jobItem,
-    isLoading: isInitialLoading,
+    isLoading: isLoading,
   } as const;
 }
 
@@ -73,7 +69,6 @@ export function useJobItems(ids: number[]) {
       refetchOnWindowFocus: false,
       retry: false,
       enabled: Boolean(id),
-      onError: handleError,
     })),
   });
 
@@ -124,21 +119,18 @@ const fetchJobItems = async (
  * @returns An object containing the job items and loading state.
  */
 export function useSearchQuery(searchText: string) {
-  const { data, isInitialLoading } = useQuery(
-    ["job-items", searchText],
-    () => fetchJobItems(searchText),
-    {
-      staleTime: 1000 * 60 * 60,
-      refetchOnWindowFocus: false,
-      retry: false,
-      enabled: Boolean(searchText),
-      onError: handleError,
-    }
-  );
+  const { data, isLoading } = useQuery({
+    queryKey: ["job-items", searchText],
+    queryFn: () => fetchJobItems(searchText),
+    staleTime: 1000 * 60 * 60,
+    refetchOnWindowFocus: false,
+    retry: false,
+    enabled: Boolean(searchText),
+  });
 
   return {
     jobItems: data?.jobItems,
-    isLoading: isInitialLoading,
+    isLoading: isLoading,
   } as const;
 }
 
