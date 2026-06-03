@@ -1,11 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { JobItem, JobItemExpanded } from "./types";
-import { BASE_API_URL } from "./constants";
+import { BASE_API_URL, STALE_TIME } from "./constants";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { BookmarksContext } from "../context/BookmarksContextProvider";
 import { ActiveIdContext } from "../context/ActiveIdContextProvider";
 import { SearchTextContext } from "../context/SearchTextContextProvider";
 import { JobItemsContext } from "../context/JobItemsContextProvider";
+
+/** Shared React Query options for all job item queries */
+const queryDefaults = {
+  staleTime: STALE_TIME,
+  refetchOnWindowFocus: false as const,
+  retry: false,
+};
 
 type JobItemApiResponse = {
   public: boolean;
@@ -21,16 +28,12 @@ type JobItemApiResponse = {
 const fetchJobItem = async (id: number): Promise<JobItemApiResponse> => {
   const response = await fetch(`${BASE_API_URL}/${id}`);
 
-  console.log(response);
-  // 4xx or 5xx
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.description);
   }
 
-  const data = await response.json();
-  console.log(data);
-  return data;
+  return response.json();
 };
 
 /**
@@ -42,15 +45,13 @@ export function useJobItem(id: number | null) {
   const { data, isLoading } = useQuery({
     queryKey: ["job-item", id],
     queryFn: () => (id ? fetchJobItem(id) : null),
-    staleTime: 1000 * 60 * 60,
-    refetchOnWindowFocus: false,
-    retry: false,
+    ...queryDefaults,
     enabled: Boolean(id),
   });
 
   return {
     jobItem: data?.jobItem,
-    isLoading: isLoading,
+    isLoading,
   } as const;
 }
 
@@ -65,18 +66,14 @@ export function useJobItems(ids: number[]) {
     queries: ids.map((id) => ({
       queryKey: ["job-item", id],
       queryFn: () => fetchJobItem(id),
-      staleTime: 1000 * 60 * 60,
-      refetchOnWindowFocus: false,
-      retry: false,
+      ...queryDefaults,
       enabled: Boolean(id),
     })),
   });
 
   const jobItems = results
     .map((result) => result.data?.jobItem)
-    // .filter((jobItem) => jobItem !== undefined);
     .filter((jobItem) => !!jobItem);
-  // .filter((jobItem) => Boolean(jobItem)) as JobItemExpanded[];
   const isLoading = results.some((result) => result.isLoading);
 
   return {
@@ -84,8 +81,6 @@ export function useJobItems(ids: number[]) {
     isLoading,
   };
 }
-
-// --------------------------------------------------
 
 type JobItemsApiResponse = {
   public: boolean;
@@ -104,13 +99,13 @@ const fetchJobItems = async (
   searchText: string | null
 ): Promise<JobItemsApiResponse> => {
   const response = await fetch(`${BASE_API_URL}?search=${searchText}`);
-  // 4xx or 5xx
+
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.description);
   }
-  const data = await response.json();
-  return data;
+
+  return response.json();
 };
 
 /**
@@ -122,19 +117,15 @@ export function useSearchQuery(searchText: string) {
   const { data, isLoading } = useQuery({
     queryKey: ["job-items", searchText],
     queryFn: () => fetchJobItems(searchText),
-    staleTime: 1000 * 60 * 60,
-    refetchOnWindowFocus: false,
-    retry: false,
+    ...queryDefaults,
     enabled: Boolean(searchText),
   });
 
   return {
     jobItems: data?.jobItems,
-    isLoading: isLoading,
+    isLoading,
   } as const;
 }
-
-// --------------------------------------------------
 
 /**
  * Debounces a value by delaying its update until a certain amount of time has passed without any changes.
@@ -202,27 +193,6 @@ export function useLocalStorage<T>(
 
   return [value, setValue] as const;
 }
-
-// export function useOnClickOutside(
-//   refs: React.RefObject<HTMLElement>[],
-//   handler: () => void
-// ) {
-//   useEffect(() => {
-//     const handleClick = (e: MouseEvent) => {
-//       if (refs.every((ref) => !ref.current?.contains(e.target as Node))) {
-//         handler();
-//       }
-//     };
-
-//     document.addEventListener("click", handleClick);
-
-//     return () => {
-//       document.removeEventListener("click", handleClick);
-//     };
-//   }, [refs, handler]);
-// }
-
-// --------------------------------------------------
 
 /**
  * Custom hook to access the BookmarksContext.

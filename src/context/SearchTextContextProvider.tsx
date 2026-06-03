@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { useDebounce } from "../lib/hooks";
+import { DEFAULT_SEARCH_TEXT, DEBOUNCE_DELAY } from "../lib/constants";
 
 type SearchTextContext = {
   searchText: string;
@@ -19,8 +20,8 @@ export default function SearchTextContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [searchText, setSearchText] = useState("Next js");
-  const debouncedSearchText = useDebounce(searchText, 250);
+  const [searchText, setSearchText] = useState(DEFAULT_SEARCH_TEXT);
+  const debouncedSearchText = useDebounce(searchText, DEBOUNCE_DELAY);
 
   /**
    * Handles the change in search text.

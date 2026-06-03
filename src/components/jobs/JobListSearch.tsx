@@ -3,7 +3,7 @@ import JobList from "./JobList";
 
 /**
  * Renders the JobListSearch component.
- * 
+ *
  * @returns The rendered JobListSearch component.
  */
 export default function JobListSearch() {

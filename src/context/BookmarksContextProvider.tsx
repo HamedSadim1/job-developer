@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { useJobItems, useLocalStorage } from "../lib/hooks";
 import { JobItemExpanded } from "../lib/types";
+import { BOOKMARKED_IDS_KEY } from "../lib/constants";
 
 type BookmarksContext = {
   bookmarkedIds: number[];
@@ -22,7 +23,7 @@ export default function BookmarksContextProvider({
   children: React.ReactNode;
 }) {
   const [bookmarkedIds, setBookmarkedIds] = useLocalStorage<number[]>(
-    "bookmarkedIds",
+    BOOKMARKED_IDS_KEY,
     []
   );
   const { jobItems: bookmarkedJobItems, isLoading } =
