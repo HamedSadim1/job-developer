@@ -38,7 +38,7 @@ export default function JobItemsContextProvider({
 
   // derived / computed state
   const totalNumberOfResults = jobItems?.length || 0;
-  const totalNumberOfPages = totalNumberOfResults / RESULTS_PER_PAGE;
+  const totalNumberOfPages = Math.ceil(totalNumberOfResults / RESULTS_PER_PAGE);
   const jobItemsSorted = useMemo(
     () =>
       [...(jobItems || [])].sort((a, b) => {

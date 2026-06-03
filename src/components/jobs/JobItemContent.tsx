@@ -20,9 +20,14 @@ export default function JobItemContent() {
   return (
     <section className="job-details">
       <div>
-        <img src={jobItem.coverImgURL} alt="#" />
+        <img src={jobItem.coverImgURL} alt={jobItem.title} loading="lazy" />
 
-        <a className="apply-btn" href={jobItem.companyURL} target="_blank">
+        <a
+          className="apply-btn"
+          href={jobItem.companyURL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Apply
         </a>
 

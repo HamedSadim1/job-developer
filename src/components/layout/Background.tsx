@@ -6,7 +6,11 @@
 const Background = () => {
   return (
     <div className="background">
-      <img src={BACKGROUND_PATTERN_URL} alt="Background pattern" />
+      <img
+        src={BACKGROUND_PATTERN_URL}
+        alt="Background pattern"
+        loading="lazy"
+      />
     </div>
   );
 };

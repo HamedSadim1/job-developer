@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useMemo } from "react";
 import { useActiveId } from "../lib/hooks";
 
 type ActiveIdContext = {
@@ -20,12 +20,10 @@ export default function ActiveIdContextProvider({
 }) {
   const activeId = useActiveId();
 
+  const contextValue = useMemo(() => ({ activeId }), [activeId]);
+
   return (
-    <ActiveIdContext.Provider
-      value={{
-        activeId,
-      }}
-    >
+    <ActiveIdContext.Provider value={contextValue}>
       {children}
     </ActiveIdContext.Provider>
   );

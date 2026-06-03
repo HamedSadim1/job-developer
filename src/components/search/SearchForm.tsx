@@ -20,7 +20,7 @@ export default function SearchForm({
       action="#"
       className="search"
     >
-      <button type="submit">
+      <button type="submit" aria-label="Search">
         <i className="fa-solid fa-magnifying-glass"></i>
       </button>
 
@@ -33,6 +33,7 @@ export default function SearchForm({
         type="text"
         required
         placeholder="Find remote developer jobs..."
+        aria-label="Search for jobs"
       />
     </form>
   );

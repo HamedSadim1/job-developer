@@ -10,7 +10,11 @@ const Footer = () => {
       <small>
         <p>
           © Copyright by
-          <a href="https://github.com/HamedSadim1" target="_blank">
+          <a
+            href="https://github.com/HamedSadim1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Hamed Sadim
           </a>
           . Intended for learning or your portfolio.

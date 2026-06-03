@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useCallback, useMemo } from "react";
 import { useJobItems, useLocalStorage } from "../lib/hooks";
 import { JobItemExpanded } from "../lib/types";
 import { BOOKMARKED_IDS_KEY } from "../lib/constants";
@@ -29,33 +29,37 @@ export default function BookmarksContextProvider({
   const { jobItems: bookmarkedJobItems, isLoading } =
     useJobItems(bookmarkedIds);
 
-  // Filter out undefined values from bookmarkedJobItems
-  const filteredBookmarkedJobItems = bookmarkedJobItems.filter(
-    (item): item is JobItemExpanded => item !== undefined
+  const filteredBookmarkedJobItems = useMemo(
+    () =>
+      bookmarkedJobItems.filter(
+        (item): item is JobItemExpanded => item !== undefined
+      ),
+    [bookmarkedJobItems]
   );
 
-  /**
-   * Toggles the bookmark status of a job item.
-   *
-   * @param id - The ID of the job item.
-   */
-  const handleToggleBookmark = (id: number) => {
-    if (bookmarkedIds.includes(id)) {
-      setBookmarkedIds((prev) => prev.filter((item) => item !== id));
-    } else {
-      setBookmarkedIds((prev) => [...prev, id]);
-    }
-  };
+  const handleToggleBookmark = useCallback(
+    (id: number) => {
+      if (bookmarkedIds.includes(id)) {
+        setBookmarkedIds((prev) => prev.filter((item) => item !== id));
+      } else {
+        setBookmarkedIds((prev) => [...prev, id]);
+      }
+    },
+    [bookmarkedIds, setBookmarkedIds]
+  );
+
+  const contextValue = useMemo(
+    () => ({
+      bookmarkedIds,
+      handleToggleBookmark,
+      bookmarkedJobItems: filteredBookmarkedJobItems,
+      isLoading,
+    }),
+    [bookmarkedIds, handleToggleBookmark, filteredBookmarkedJobItems, isLoading]
+  );
 
   return (
-    <BookmarksContext.Provider
-      value={{
-        bookmarkedIds,
-        handleToggleBookmark,
-        bookmarkedJobItems: filteredBookmarkedJobItems,
-        isLoading,
-      }}
-    >
+    <BookmarksContext.Provider value={contextValue}>
       {children}
     </BookmarksContext.Provider>
   );

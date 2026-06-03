@@ -8,15 +8,17 @@ import { createPortal } from "react-dom";
  * @param ref - A ref object that is attached to the root element of the component.
  * @returns The rendered BookmarksPopover component.
  */
-const BookmarksPopover = forwardRef<HTMLDivElement>(function (_, ref) {
-  const { bookmarkedJobItems, isLoading } = useBookmarksContext();
+const BookmarksPopover = forwardRef<HTMLDivElement>(
+  function BookmarksPopoverInner(_, ref) {
+    const { bookmarkedJobItems, isLoading } = useBookmarksContext();
 
-  return createPortal(
-    <div ref={ref} className="bookmarks-popover">
-      <JobList jobItems={bookmarkedJobItems} isLoading={isLoading} />
-    </div>,
-    document.body
-  );
-});
+    return createPortal(
+      <div ref={ref} className="bookmarks-popover">
+        <JobList jobItems={bookmarkedJobItems} isLoading={isLoading} />
+      </div>,
+      document.body
+    );
+  }
+);
 
 export default BookmarksPopover;
