@@ -1,6 +1,6 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
-import { PageDirection } from "../lib/types";
-import { useJobItemsContext } from "../lib/hooks";
+import { PageDirection } from "../../lib/types";
+import { useJobItemsContext } from "../../lib/hooks";
 
 /**
  * Renders pagination controls for navigating between pages.

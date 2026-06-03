@@ -1,5 +1,5 @@
 import { BookmarkFilledIcon } from "@radix-ui/react-icons";
-import { useBookmarksContext } from "../lib/hooks";
+import { useBookmarksContext } from "../../lib/hooks";
 
 type BookmarkIconProps = {
   id: number;

@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
-import { useBookmarksContext } from "../lib/hooks";
-import JobList from "./JobList";
+import { useBookmarksContext } from "../../lib/hooks";
+import JobList from "../jobs/JobList";
 import { createPortal } from "react-dom";
 
 /**

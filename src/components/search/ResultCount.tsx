@@ -1,4 +1,4 @@
-import { useJobItemsContext } from "../lib/hooks";
+import { useJobItemsContext } from "../../lib/hooks";
 
 /**
  * Renders the total number of results.

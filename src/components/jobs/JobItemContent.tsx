@@ -1,6 +1,6 @@
-import { useActiveIdContext, useJobItem } from "../lib/hooks";
-import BookmarkIcon from "./BookmarkIcon";
-import Spinner from "./Spinner";
+import { useActiveIdContext, useJobItem } from "../../lib/hooks";
+import BookmarkIcon from "../bookmarks/BookmarkIcon";
+import Spinner from "../ui/Spinner";
 
 /**
  * Renders the content of a job item.
@@ -9,8 +9,6 @@ import Spinner from "./Spinner";
 export default function JobItemContent() {
   const { activeId } = useActiveIdContext();
   const { jobItem, isLoading } = useJobItem(activeId);
-  console.log(jobItem);
-
   if (isLoading) {
     return <LoadingJobContent />;
   }
