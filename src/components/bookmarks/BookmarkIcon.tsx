@@ -1,5 +1,4 @@
 import { BookmarkFilledIcon } from "@radix-ui/react-icons";
-import { memo } from "react";
 import { useBookmarksContext } from "../../lib/hooks";
 
 type BookmarkIconProps = {
@@ -13,7 +12,7 @@ type BookmarkIconProps = {
  * @param {string} props.id - The ID of the bookmark.
  * @returns {JSX.Element} The rendered BookmarkIcon component.
  */
-function BookmarkIcon({ id }: BookmarkIconProps) {
+export default function BookmarkIcon({ id }: BookmarkIconProps) {
   const { bookmarkedIds, handleToggleBookmark } = useBookmarksContext();
 
   return (
@@ -36,5 +35,3 @@ function BookmarkIcon({ id }: BookmarkIconProps) {
     </button>
   );
 }
-
-export default memo(BookmarkIcon);

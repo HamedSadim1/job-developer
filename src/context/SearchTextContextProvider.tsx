@@ -1,4 +1,4 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useState } from "react";
 import { useDebounce } from "../lib/hooks";
 import { DEFAULT_SEARCH_TEXT, DEBOUNCE_DELAY } from "../lib/constants";
 
@@ -10,11 +10,6 @@ type SearchTextContext = {
 
 export const SearchTextContext = createContext<SearchTextContext | null>(null);
 
-/**
- * Provides a context for managing search text.
- * @param children - The child components to render.
- * @returns The search text context provider component.
- */
 export default function SearchTextContextProvider({
   children,
 }: {
@@ -23,9 +18,9 @@ export default function SearchTextContextProvider({
   const [searchText, setSearchText] = useState(DEFAULT_SEARCH_TEXT);
   const debouncedSearchText = useDebounce(searchText, DEBOUNCE_DELAY);
 
-  const handleChangeSearchText = useCallback((newSearchText: string) => {
+  const handleChangeSearchText = (newSearchText: string) => {
     setSearchText(newSearchText);
-  }, []);
+  };
 
   return (
     <SearchTextContext.Provider

@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { JobItem } from "../../lib/types";
 import BookmarkIcon from "../bookmarks/BookmarkIcon";
 
@@ -14,7 +13,7 @@ type JobListItemProps = {
  * @param {boolean} isActive - Indicates whether the job item is active or not.
  * @returns {JSX.Element} The rendered job item component.
  */
-function JobListItem({ jobItem, isActive }: JobListItemProps) {
+export default function JobListItem({ jobItem, isActive }: JobListItemProps) {
   return (
     <li className={`job-item ${isActive ? "job-item--active" : ""}`}>
       <a href={`#${jobItem.id}`} className="job-item__link">
@@ -33,5 +32,3 @@ function JobListItem({ jobItem, isActive }: JobListItemProps) {
     </li>
   );
 }
-
-export default memo(JobListItem);
