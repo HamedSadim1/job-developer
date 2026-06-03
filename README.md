@@ -1,5 +1,7 @@
 # Job Developer
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
 ![Screenshot](./public/screenshots/rmt-Dev-screenshot.png)
 
 Een moderne, responsive webapplicatie voor het zoeken naar ontwikkelaarsbanen. Gebouwd met React, TypeScript en Vite voor een snelle en efficiënte gebruikerservaring.
