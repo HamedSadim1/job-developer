@@ -1,6 +1,7 @@
 # Job Developer
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![React Compiler](https://img.shields.io/badge/React_Compiler-enabled-61dafb.svg)](https://react.dev/learn/react-compiler)
 
 ![Screenshot](./public/screenshots/rmt-Dev-screenshot.png)
 
@@ -26,8 +27,10 @@ Job Developer is een gebruiksvriendelijke applicatie waarmee gebruikers kunnen z
 | **Frontend**        | React                             | 19     |
 | **Language**        | TypeScript                        | 6      |
 | **Build Tool**      | Vite                              | 8      |
+| **Compiler**        | React Compiler (auto-memoization) | 1      |
 | **Data Fetching**   | TanStack React Query              | 5      |
 | **Linting**         | ESLint (flat config)              | 10     |
+| **Formatting**      | Prettier                          | 3      |
 | **Git Hooks**       | Husky + lint-staged               | 9      |
 | **Commit Messages** | Commitlint (conventional commits) | 21     |
 | **UI Components**   | Radix UI Icons                    | 1.3    |
@@ -80,12 +83,14 @@ src/
 
 ## Scripts
 
-| Commando          | Beschrijving                                  |
-| ----------------- | --------------------------------------------- |
-| `npm run dev`     | Start de development server met hot reloading |
-| `npm run build`   | Typecheck + productie build                   |
-| `npm run lint`    | Controleer de code op ESLint fouten           |
-| `npm run preview` | Bekijk de productie build lokaal              |
+| Commando               | Beschrijving                                    |
+| ---------------------- | ----------------------------------------------- |
+| `npm run dev`          | Start de development server met hot reloading   |
+| `npm run build`        | Typecheck + productie build                     |
+| `npm run lint`         | Controleer de code op ESLint fouten             |
+| `npm run format`       | Format alle bestanden met Prettier              |
+| `npm run format:check` | Controleer of alle bestanden geformatteerd zijn |
+| `npm run preview`      | Bekijk de productie build lokaal                |
 
 ## Commit Conventies
 
@@ -115,7 +120,7 @@ git commit -m "fix: los bug op in navigatie"
 git commit -m "chore: update packages naar laatste versies"
 ```
 
-> **Pre-commit hook**: ESLint wordt automatisch uitgevoerd op staged `.ts`/`.tsx` bestanden.
+> **Pre-commit hook**: ESLint en Prettier worden automatisch uitgevoerd op staged bestanden.
 > **Commit-msg hook**: Commitlint controleert of je commit message het conventionele formaat volgt.
 
 ## CI/CD
