@@ -7,10 +7,9 @@ export default defineConfig({
   plugins: [
     react(),
     babel({
-      filter: /\.[jt]sx?$/,
-      babelConfig: {
-        plugins: ["babel-plugin-react-compiler"],
-      },
+      include: /\.(js|jsx|ts|tsx)$/,
+      exclude: /node_modules/,
+      plugins: ["babel-plugin-react-compiler"],
     }),
   ],
 });
