@@ -2,13 +2,19 @@
  * Footer component that displays the footer section of the website.
  * @returns The rendered footer component.
  */
+import { TOTAL_JOBS_COUNT } from "../../lib/constants";
+
 const Footer = () => {
   return (
     <footer className="footer">
       <small>
         <p>
           © Copyright by
-          <a href="https://github.com/HamedSadim1" target="_blank">
+          <a
+            href="https://github.com/HamedSadim1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Hamed Sadim
           </a>
           . Intended for learning or your portfolio.
@@ -16,7 +22,7 @@ const Footer = () => {
       </small>
 
       <p>
-        <span className="u-bold">109573</span> total jobs available
+        <span className="u-bold">{TOTAL_JOBS_COUNT}</span> total jobs available
       </p>
     </footer>
   );

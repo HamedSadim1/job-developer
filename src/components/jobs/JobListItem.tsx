@@ -1,5 +1,5 @@
-import { JobItem } from "../lib/types";
-import BookmarkIcon from "./BookmarkIcon";
+import { JobItem } from "../../lib/types";
+import BookmarkIcon from "../bookmarks/BookmarkIcon";
 
 type JobListItemProps = {
   jobItem: JobItem;

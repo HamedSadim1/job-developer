@@ -1,5 +1,5 @@
 import { BookmarkFilledIcon } from "@radix-ui/react-icons";
-import { useBookmarksContext } from "../lib/hooks";
+import { useBookmarksContext } from "../../lib/hooks";
 
 type BookmarkIconProps = {
   id: number;
@@ -23,6 +23,9 @@ export default function BookmarkIcon({ id }: BookmarkIconProps) {
         e.preventDefault();
       }}
       className="bookmark-btn"
+      aria-label={
+        bookmarkedIds.includes(id) ? "Remove bookmark" : "Add bookmark"
+      }
     >
       <BookmarkFilledIcon
         className={`
